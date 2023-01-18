@@ -1,0 +1,23 @@
+rules:
+  - id: useless-booleans
+    patterns:
+      - pattern-either:
+          - pattern: if true ...
+          - pattern: if false ...
+          - pattern: true && ...
+          - pattern: false && ...
+          - pattern: true || ...
+          - pattern: false || ...
+          - pattern: ... && true
+          - pattern: ... && false
+          - pattern: ... || true
+          - pattern: ... || false
+
+    message: use of boolean conditions in this way is useless. 
+    languages: [julia]
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+
