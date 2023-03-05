@@ -1,0 +1,21 @@
+rules:
+  - id: open-tmp-path
+    patterns:
+      - pattern-either:
+          - pattern: |
+              open($X, ...) do
+              ...
+              end
+          - pattern: open($X, ...)
+      - metavariable-regex:
+          metavariable: $X
+          regex: '\"\/tmp/.*'
+    message: Do not open file in /tmp directly. Use `mktemp` instead.
+    languages:
+      - julia
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL
