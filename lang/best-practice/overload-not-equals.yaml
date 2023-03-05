@@ -1,0 +1,17 @@
+rules:
+  - id: overload-not-equals
+    patterns:
+      - pattern-either: 
+        - pattern: '!=($X, $Y) = ...'
+        - pattern: |
+            function !=($X, $Y)
+            ...
+            end
+    message: '!= should not be overloaded since it is defined as a constant function. Overload == instead.' 
+    languages: [julia]
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL

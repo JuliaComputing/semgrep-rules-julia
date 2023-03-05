@@ -43,6 +43,7 @@ else
     println(2)
 end
 
+# ok:useless-booleans
 while true #works! 
     break
 end

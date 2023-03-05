@@ -1,0 +1,19 @@
+rules:
+  - id: invalid-module-name
+    patterns:
+      - pattern: |
+          module $X 
+          ...
+          module $X 
+          ...
+          end
+          ...
+          end
+    message: Same module name for parent and child modules - $X
+    languages: [julia]
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL

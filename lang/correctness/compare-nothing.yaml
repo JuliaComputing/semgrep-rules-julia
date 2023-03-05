@@ -1,11 +1,11 @@
 rules:
-  - id: useless-booleans
+  - id: compare-nothing
     patterns:
       - pattern-either:
-          - pattern: if true ...
-          - pattern: if false ...
-          - pattern: true && ...
-          - pattern: false && ...
+          - pattern: nothing == ...
+          - pattern: ... == nothing
+          - pattern: nothing != ...
+          - pattern: ... != nothing 
           - pattern: true || ...
           - pattern: false || ...
           - pattern: ... && true
@@ -13,12 +13,10 @@ rules:
           - pattern: ... || true
           - pattern: ... || false
 
-    message: boolean conditions written in this manner are pointless. 
+    message: comparisons of nothing should be make with === or !=== 
     languages: [julia]
-    severity: WARNING
+    severity: ERROR
     metadata:
-      category: best-practice
+      category: correctness
       technology:
         - julia
-      license: LGPL
-
