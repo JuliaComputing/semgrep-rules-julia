@@ -1,0 +1,12 @@
+rules:
+  - id: chained-const-assignment
+    pattern: const $X = $Y = ...
+    message: Do not chain assignments with const. The right hand side is not constant here. 
+    languages:
+      - julia
+    severity: ERROR
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL
