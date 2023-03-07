@@ -1,0 +1,27 @@
+rules:
+  - id: unused-function-parameter
+
+    patterns:
+      - pattern-not:
+          patterns:
+            - pattern: |
+                function $F(..., $X, ...)
+                  ...
+                  $BODY
+                end
+            - metavariable-pattern:
+                metavariable: $BODY
+                pattern: |
+                  $X
+      - pattern: |
+          function $F(..., $X, ...)
+            ...
+          end
+    message: Unused function parameter $X
+    languages: [julia]
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL
