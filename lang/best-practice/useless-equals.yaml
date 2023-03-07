@@ -1,0 +1,18 @@
+rules:
+  - id: useless-equals
+    patterns:
+      - pattern-not-inside: '@test ...'
+      - pattern-either:
+          - pattern: '$X == $X'
+          - pattern: '$X != $X'
+          - pattern: '$X === $X'
+          - pattern: '$X !== $X'
+    message: Comparing the same object in the RHS and LHS is pointless
+    languages:
+      - julia
+    severity: WARNING
+    metadata:
+      category: best-practice
+      technology:
+        - julia
+      license: LGPL
