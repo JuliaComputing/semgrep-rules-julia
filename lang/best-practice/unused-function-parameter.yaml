@@ -1,6 +1,6 @@
+# This test is likely too noisy. Remove? 
 rules:
   - id: unused-function-parameter
-
     patterns:
       - pattern-not:
           patterns:
