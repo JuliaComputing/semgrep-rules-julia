@@ -14,7 +14,7 @@ rules:
     message: Indexing by `threadid()` may cause race conditions and should be avoided.
     metadata:
       references:
-        - https://github.com/JuliaLang/www.julialang.org/pull/1904
+        - https://www.julialang.org/blog/2023/07/PSA-dont-use-threadid/
       license: LGPL
     languages:
       - julia
