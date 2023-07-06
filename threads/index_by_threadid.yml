@@ -1,0 +1,21 @@
+rules:
+  - id: index-by-threadid
+    pattern-either:
+      - pattern: |
+          $TID = Threads.threadid()
+          ...
+          $X = $S[$TID]
+      - pattern: |
+          $TID = threadid()
+          ...
+          $X = $S[$TID]
+      - pattern: $S[threadid()]
+      - pattern: $S[Threads.threadid()]
+    message: Indexing by `threadid()` may cause race conditions and should be avoided.
+    metadata:
+      references:
+        - https://julialang.netlify.app/previews/pr1914/blog/2023/06/psa-dont-use-threadid/
+      license: LGPL
+    languages:
+      - julia
+    severity: WARNING
