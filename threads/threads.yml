@@ -1,0 +1,16 @@
+rules:
+  - id: threads-macro
+    patterns:
+      - pattern-either:
+          - pattern: |
+              Threads.@threads for $X = ...
+                ...
+              end
+          - pattern: |
+              @threads for $X = ...
+                ...
+              end
+    message: Using `Threads.@threads` can possibly lead to concurrency bugs. Use `Threads.@threads :static` instead or work directly with `Threads.@spawn` to create and manage tasks.
+    languages:
+      - julia
+    severity: WARNING
