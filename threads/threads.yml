@@ -1,5 +1,5 @@
 rules:
-  - id: threads-macro
+  - id: threads-macro-not-recommended
     patterns:
       - pattern-either:
           - pattern: |
