@@ -12,7 +12,7 @@ There rules are likely to have some false positives and negatives, so feedback w
 
 * [Install the Semgrep CLI](https://semgrep.dev/docs/getting-started/)
 * Clone this repo `git clone https://github.com/JuliaComputing/semgrep-rules-julia.git`
-* Run `semgrep -c semgrep-rules-julia /path/to/your/package`
+* Run `semgrep -c /path/to/semgrep-rules-julia/ /path/to/your/package`
 * Semgrep has good [documentation](https://semgrep.dev/docs/) and [tutorials](https://semgrep.dev/learn/), which have more information about the tool. 
 * [Semgrep Playground](https://semgrep.dev/playground/) is the best way to experiment with new rules. 
 
