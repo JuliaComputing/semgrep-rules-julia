@@ -1,7 +1,7 @@
-using Base.Threads
+using Base.Threads: threadid, @threads
 
 states = zeros(10)
-Threads.@spawn for i = 1:10
+Threads.@threads for i = 1:10
     # ruleid: index-by-threadid
     tid = Threads.threadid()
     old_val = states[tid]
@@ -9,20 +9,19 @@ Threads.@spawn for i = 1:10
     states[tid] = new_val
 end
 
-@spawn begin
+@threads for i = 1:10
     # ruleid: index-by-threadid
     tid = threadid()
     val = states[tid]
     states[tid] = val + 1
 end
 
-Threads.@spawn for i = 1:10
+@threads :foo for i = 1:10
     # ruleid: index-by-threadid
-    val = states[threadid()]
+    val = states[Threads.threadid()]
 end
 
-
-Threads.@spawn for i = 1:10
-    # ruleid: index-by-threadid
+Threads.@threads :static for i = 1:10
+    # ok: index-by-threadid
     val = states[Threads.threadid()]
 end

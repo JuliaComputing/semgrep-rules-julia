@@ -1,0 +1,31 @@
+rules:
+  - id: index-by-threadid
+    patterns:
+      - pattern-inside: |
+          @threads ... for $X = ...
+            ...
+          end
+      - pattern-not-inside: |
+          @threads :static for $X = ...
+            ...
+          end
+      - pattern-either:
+          - pattern: $S[Threads.threadid()]
+          - pattern: $S[threadid()]
+          - pattern: |
+              $TID = Threads.threadid()
+              ...
+              $Y = $S[$TID]
+          - pattern: |
+              $TID = threadid()
+              ...
+              $Y = $S[$TID]
+    message: Indexing by `threadid()` may cause race conditions and should be avoided.
+    metadata:
+      confidence: LOW
+      references:
+        - https://www.julialang.org/blog/2023/07/PSA-dont-use-threadid/
+      license: LGPL
+    languages:
+      - julia
+    severity: WARNING
