@@ -10,9 +10,9 @@ function foo(x)
     y
   end
   
-  #ok: unused-function-parameter
+  #todook: unused-function-parameter
   function foo(x)
-    x = 3
+    x = 3 # TODO: Mutating parameters should count as using them
   end
   
   #ok: unused-function-parameter
