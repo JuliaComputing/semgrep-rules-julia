@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: 3.9.2
     - name: install semgrep
-      run: pip3 install semgrep==1.52.0
+      run: pip3 install semgrep==1.60.0
     - name: validate rules
       run: semgrep --validate --config .
     - name: run semgrep
