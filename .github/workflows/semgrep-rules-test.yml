@@ -7,17 +7,26 @@ on:
     - main
 
 jobs:
-  test-latest:
-    name: rules-test-latest
+  test:
+    name: rules-test-${{ matrix.semgrep_version }}
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - semgrep_version: '1.56.0'
+            install_command: 'pip3 install semgrep==1.56.0'
+          - semgrep_version: 'latest'
+            install_command: 'pip3 install semgrep'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9.2
-    - name: install semgrep
-      run: pip3 install semgrep==1.52.0
-    - name: validate rules
+    - name: Install Semgrep
+      run: ${{ matrix.install_command }}
+    - name: Validate rules
       run: semgrep --validate --config .
-    - name: run semgrep
+    - name: Run semgrep
       run: semgrep --test --test-ignore-todo
+    continue-on-error: ${{ matrix.semgrep_version == 'latest' }}
