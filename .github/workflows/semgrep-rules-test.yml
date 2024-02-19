@@ -16,6 +16,8 @@ jobs:
         include:
           - semgrep_version: '1.56.0'
             install_command: 'python3 -m pip install semgrep==1.56.0'
+          - semgrep_version: '1.58.0'
+            install_command: 'python3 -m pip install semgrep==1.58.0'
           - semgrep_version: 'latest'
             install_command: 'python3 -m pip install semgrep'
     steps:
@@ -28,7 +30,7 @@ jobs:
     - name: Install Semgrep
       run: ${{ matrix.install_command }}
     - name: Validate rules
-      run: semgrep --validate --config .
+      run: semgrep --validate --config rules
     - name: Run semgrep
       run: semgrep --test --test-ignore-todo
     continue-on-error: ${{ matrix.semgrep_version == 'latest' }}
