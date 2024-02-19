@@ -15,14 +15,16 @@ jobs:
       matrix:
         include:
           - semgrep_version: '1.56.0'
-            install_command: 'pip3 install semgrep==1.56.0'
+            install_command: 'python3 -m pip install semgrep==1.56.0'
           - semgrep_version: 'latest'
-            install_command: 'pip3 install semgrep'
+            install_command: 'python3 -m pip install semgrep'
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
       with:
-        python-version: 3.9.2
+        submodules: true
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
     - name: Install Semgrep
       run: ${{ matrix.install_command }}
     - name: Validate rules
