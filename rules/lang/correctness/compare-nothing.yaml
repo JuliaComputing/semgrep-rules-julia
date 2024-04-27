@@ -6,7 +6,7 @@ rules:
           - pattern: ... == nothing
           - pattern: nothing != ...
           - pattern: ... != nothing 
-    message: comparisons of `nothing` should be made with === or !=== or with isnothing()
+    message: comparisons of `nothing` should be made with === or !== or with isnothing()
     languages: [julia]
     severity: ERROR
     metadata:
