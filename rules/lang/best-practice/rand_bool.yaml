@@ -1,0 +1,23 @@
+rules:
+  - id: rand-bool
+    patterns:
+      - pattern-either:
+        - pattern: $RAND() < 0.5
+        - patterns:
+            - pattern-inside: |
+                $X = $RAND()
+                ...
+                <... $X < 0.5 ...>
+            - pattern: $X < 0.5
+      - metavariable-regex:
+          metavariable: $RAND
+          regex: '(Base.)?rand'
+    fix: rand(Bool)
+    message: To get a random Boolean, use `rand(Bool)`.
+    languages:
+      - julia
+    severity: WARNING
+    metadata:
+      category: best-practice
+      license: LGPL
+
