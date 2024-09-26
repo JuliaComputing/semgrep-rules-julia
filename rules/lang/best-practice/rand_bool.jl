@@ -12,7 +12,7 @@ end
 rand() < 0.7  # this is fine
 
 x = rand()
-#ruleid: rand-bool
+#ok: rand-bool
 if x < 0.5
     do_something()
 else
@@ -27,7 +27,7 @@ else
     do_something_else()
 end
 
-#ruleid: rand-bool
+#ok: rand-bool
 x < 0.5 && action()
 
 #ok: rand-bool
